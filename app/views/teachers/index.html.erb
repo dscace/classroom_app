@@ -1,31 +1,33 @@
-<p id="notice"><%= notice %></p>
+<% if notice != nil %>
+  <p id="notice" class="alert alert-success alert-dismissable" role="alert">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= notice %>
+  </p>
+<% end %>
 
 <h1>Teachers</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Interests</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @teachers.each do |teacher| %>
-      <tr>
-        <td><%= teacher.name %></td>
-        <td><%= teacher.age %></td>
-        <td><%= teacher.interests %></td>
-        <td><%= link_to 'Show', teacher %></td>
-        <td><%= link_to 'Edit', edit_teacher_path(teacher) %></td>
-        <td><%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+<div class="col-md-4 col-md-offset-4 text-center">
+<%= link_to 'New Teacher', new_teacher_path, class: "btn btn-info" %>
+</div>
+</div> 
 
 <br>
 
-<%= link_to 'New Teacher', new_teacher_path %>
+
+
+<div class="row">
+  <% @teachers.each do |teacher| %>
+    <div class="col-md-3" id="lil_div">
+      <div class="well">
+        <h2><%= "#{teacher.name}" %></h2>
+        <p>Age: <%= teacher.age %></p>
+        <p>Interests: <%= teacher.interests %></p>
+        <p><%= link_to 'Show', teacher, class: "btn btn-primary" %>
+        <%= link_to 'Edit', edit_teacher_path(teacher), class: "btn btn-warning" %>
+        <%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

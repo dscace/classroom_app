@@ -1,19 +1,19 @@
-<p id="notice"><%= notice %></p>
+<% if notice != nil %>
+  <p id="notice" class="alert alert-success alert-dismissable" role="alert">
+  	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= notice %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @student.name %>
-</p>
+<% if @student.avatar_file_name != nil %>
+	<%= image_tag @student.avatar.url(:medium), style: "padding-top: 15px" %>
+<% end %>
+<h2><%= "#{@student.name}" %></h2>
+<p>Age: <%= @student.age %></p>
+<p>Interests: <%= @student.interests %></p>
 
-<p>
-  <strong>Age:</strong>
-  <%= @student.age %>
-</p>
+<div class="actions form-group">
+	<%= link_to 'Edit', edit_student_path(@student), class: "btn btn-danger" %>
+	<%= link_to 'Back', students_path, class: "btn btn-info" %>
+</div>
 
-<p>
-  <strong>Interests:</strong>
-  <%= @student.interests %>
-</p>
-
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
